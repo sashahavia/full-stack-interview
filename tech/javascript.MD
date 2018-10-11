@@ -8,6 +8,7 @@ JavaScript Interview Questions & Answers
 _Note: Keep in mind that many of these questions are open-ended and could lead to interesting discussions that tell you more about the person's capabilities than a straight answer would._
 
 ### 1. Explain how `this` works in JavaScript :star:
+
 <details>
     <summary>
         Answer
@@ -20,16 +21,18 @@ In the **global execution context (outside of any function)**, `this` refers to 
 **Inside a function**, the value of this depends on how the function is called.
 
 **Implicity Binding**: As an object method its `this` is set to the object the method is called on.
-   
+
 **Explicit Binding**: Functions have three methods on their prototype, bind, call, and apply. If a function is called with these methods, then `this` is set to the first argument passed.
-   
+
 As an example:
+
 ```
 function echoThis() {
   console.log(this);
   }
 echoThis.call('hello') // hello
 ```
+
 **new Binding**: If a function is called using the `new` keyword, an empty object is created and assigned to `this` inside the function.
 
 **default Binding**: If a function is called, but the three scenarios above do not apply, then `this` is set to the global object if not in strict mode, and `undefined` if in strict mode.
@@ -42,11 +45,12 @@ echoThis.call('hello') // hello
   </details>
 
 ### 2. What is the difference between `let` and `var` and `const`? :star:
+
 <details>
     <summary>
         Answer
     </summary>
-    
+
 `const` is a signal that the identifier won’t be reassigned. It needs initialisation upfront, so you can't write const something;
 
 `let` is a signal that the variable may be reassigned, such as a counter in a loop, or a value swap in an algorithm.
@@ -64,6 +68,7 @@ for ( const cnt={i:0}; cnt.i<2; cnt.i++ ) {} // only exists inside the blockscop
 </details>
 
 ### 3. What is `===` operator? :star:
+
 <details>
     <summary>
         Answer
@@ -74,6 +79,7 @@ This is the strict comparision operator e.g. `5 == '5' = true` vs `5 === '5' = f
 </details>
 
 ### 4. List out the different ways an HTML element can be accessed in a Javascript code. :star:
+
 <details>
     <summary>
         Answer
@@ -100,21 +106,25 @@ They return a non-live NodeList, which is an array-like list of elements, array-
 </details>
 
 ### 5. What does a `typeof` operator do? :star:
+
 <details>
     <summary>
         Answer
     </summary>
-    
+
 The `typeof` operator is used to get the data type (returns a string) of its operand. The operand can be either a literal or a data structure such as a variable, a function, or an object. The operator returns the data type.
 
-Syntax: 
+Syntax:
+
 ```js
-typeof operand
-typeof (operand)
+typeof operand;
+typeof operand;
 ```
+
 </details>
 
 ### 6. What is the difference between Local Storage and Session Storage? :star:
+
 <details>
     <summary>
         Answer
@@ -142,21 +152,25 @@ For more info please check
 </details>
 
 ### 7. What is the difference between `null` and `undefined`? :star:
+
 <details>
     <summary>
         Answer
     </summary>
-    
-`null` and `undefined` are two types in JavaScript. `undefined` means something hasn't been initialized. `null` means something is currently unavailable. 
+
+`null` and `undefined` are two types in JavaScript. `undefined` means something hasn't been initialized. `null` means something is currently unavailable.
+
 </details>
 
 ### 8. What are anonymous functions in Javascript? :star:
+
 <details>
     <summary>
         Answer
     </summary>
 
 The anonymous functions are those function created with the function constructor and hasn't any given name, those functions are commonly used as parameters to other functions.
+
 ```js
 //declaration
 function() {
@@ -170,15 +184,17 @@ setTimeout(function() {
 ```
 
 ###### References
-* [helephant.com / js-anonymous-function](http://helephant.com/2012/07/14/javascript-function-declaration-vs-expression/#function-operator-is-an-expression)
-</details>
+
+- [helephant.com / js-anonymous-function](http://helephant.com/2012/07/14/javascript-function-declaration-vs-expression/#function-operator-is-an-expression)
+  </details>
 
 ### 9. What is a function callback? :star:
+
 <details>
     <summary>
         Answer
     </summary>
-    
+
 A callback function is a function that is passed to another function as an argument and is executed after some operation has been completed. Below is an example of a simple callback function that logs to the console after some operations have been completed.
 
 ```
@@ -200,28 +216,38 @@ modifyArray(arr, function() {
 </details>
 
 ### 10. What is the difference between `innerHTML` and `innerText`? :star:
+
 <details>
     <summary>
         Answer
     </summary>
-    
+
 `innerHTML` lets you work with HTML rich text and doesn't automatically encode and decode text. In other words, `innerText` retrieves and sets the content of the tag as plain text, whereas `innerHTML` retrieves and sets the content in HTML format.
+
 </details>
 
 ### 11. What is the difference between HTMLCollection and NodeList? :star:
+
 <details>
     <summary>
         Answer
     </summary>
+
+An `HTMLCollection` is a list of nodes. An individual node may be accessed by either ordinal index or the node’s name or id attributes. Collections in the HTML DOM are assumed to be live meaning that they are automatically updated when the underlying document is changed.
+
+A `NodeList` object is a collection of nodes. The `NodeList` interface provides the abstraction of an ordered collection of nodes, without defining or constraining how this collection is implemented. `NodeList` objects in the DOM are live or static based on the interface used to retrieve them
+
+`HTMLCollections` are always “in the DOM”, whereas a `NodeList` is a more generic construct that may or may not be in the DOM.
+
 </details>
 
 ### 12. What is an Event Bubbling in Javascript? :star:
+
 <details>
     <summary>
         Answer
     </summary>
 When an event happens on an element, it first runs the handlers on it, then on its parent, then all the way up on other ancestors.
-
 
 Event bubbling is a type of event propagation where the event first triggers on the innermost target element, and then successively triggers on the ancestors of the target element in the same nesting hierarchy till it reaches the outermost DOM element or document object.
 
@@ -234,6 +260,7 @@ Let’s say, we have 3 nested elements `FORM > DIV > P` with a handler on each o
 </div>
 </form>
 ```
+
 A click on the inner `<p>` first runs onclick:
 
 1. On that `<p>`.
@@ -242,22 +269,26 @@ A click on the inner `<p>` first runs onclick:
 4. And so on upwards till the document object.
 
 > So if we click on `<p>`, then we’ll see 3 alerts.
-The process is called “bubbling”, because of events “bubble” from the inner element up through parents like a bubble in the water.
+> The process is called “bubbling”, because of events “bubble” from the inner element up through parents like a bubble in the water.
 
 For more info & reference
 [Javascript - Bubbling and capturing](https://javascript.info/bubbling-and-capturing)
+
 </details>
 
 ### 13. What is NaN in Javascript? :star:
+
 <details>
     <summary>
         Answer
     </summary>
-    
+
 The global `NaN` property is a value representing Not-A-Number.
+
 </details>
 
 ### 14. Which Test-Libraries do you use? :star:
+
 <details>
     <summary>
         Answer
@@ -268,6 +299,7 @@ q-unit, mocha, chai, sinonJS, jasmine, ...
 </details>
 
 ### 15. What is Hoisting? :star:
+
 <details>
     <summary>
         Answer
@@ -280,6 +312,7 @@ Means that the declaration moved to the top of the current scope (current script
 </details>
 
 ### 16. What means `use strict`? :star:
+
 <details>
     <summary>
         Answer
@@ -290,6 +323,7 @@ Switches to strict mode which helps to prevent common errors like using unsafe o
 </details>
 
 ### 17. What is `bind()` and when we use it? :star::star:
+
 <details>
     <summary>
         Answer
@@ -306,6 +340,7 @@ it creates a new function which prevents accidental loss of scope. An alternativ
 </details>
 
 ### 18. Explain higher order function? :star::star:
+
 <details>
     <summary>
         Answer
@@ -316,6 +351,7 @@ Function that will take a function as argument or return a new function. For exa
 </details>
 
 ### 19. Explain `map`, `filter`, `reduce` and when to use it? :star:
+
 <details>
     <summary>
         Answer
@@ -330,6 +366,7 @@ Function that will take a function as argument or return a new function. For exa
 </details>
 
 ### 20. When to use event delegation? :star::star:
+
 <details>
     <summary>
         Answer
